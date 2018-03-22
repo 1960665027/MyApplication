@@ -1,0 +1,92 @@
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview"
+    android:layout_width="match_parent"
+    android:layout_height="260dp"
+    android:layout_margin="6dp"
+    android:padding="6dp"
+    card_view:cardBackgroundColor="#ffdddddd"
+    card_view:cardElevation="6dp">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/video_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        >
+        <android.support.v7.widget.CardView
+
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            card_view:cardCornerRadius="19dp"
+            >
+            <ImageView
+                android:id="@+id/touxiang"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+
+                />
+        </android.support.v7.widget.CardView>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            >
+         <LinearLayout
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content">
+             <TextView
+                 android:id="@+id/myname"
+                 android:textSize="18dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+
+                 />
+         </LinearLayout>
+     <LinearLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         >
+         <TextView
+             android:id="@+id/title_video"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+
+             />
+         <TextView
+             android:id="@+id/guankan_video"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             />
+         <TextView
+             android:id="@+id/date_video"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             />
+     </LinearLayout>
+    </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+</android.support.v7.widget.CardView>
