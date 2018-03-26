@@ -86,15 +86,26 @@ public class HomeAdatper extends RecyclerView.Adapter<HomeAdatper.HomeViewHolder
                 public void onClick(View v) {
                     if(listenner != null)
                     {
-                        listenner.OnClick(v,getLayoutPosition(),arrayList.get(getLayoutPosition()).getImgpath());
+                        listenner.OnClick(v,getLayoutPosition(),arrayList.get(getLayoutPosition()).getVideopath(),0);
                     }
 
+
+                }
+
+            });
+            mTouxiang.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listenner !=null)
+                    {
+                        listenner.OnClick(v,getLayoutPosition(),null,arrayList.get(getLayoutPosition()).getId());
+                    }
                 }
             });
         }
     }
     public interface OnItemClickListenner
     {
-        void OnClick(View view, int position, String city);
+        void OnClick(View view, int position, String videopaht,int id);
     }
 }

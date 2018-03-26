@@ -3,6 +3,7 @@ package com.example.administrator.myapplication.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.example.administrator.myapplication.R;
 import com.example.administrator.myapplication.adatper.HomeAdatper;
 import com.example.administrator.myapplication.bean.Video;
+import com.example.administrator.myapplication.view.PalyActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -52,9 +54,24 @@ public class HomeFragment extends Fragment {
             String json = (String)msg.obj;
             Type type = new TypeToken<List<Video>>(){}.getType();
             mVideo = mGson.fromJson(json,type);
-           mAdatper = new HomeAdatper(getContext(),mVideo);
+           mAdatper = new HomeAdatper(mContext,mVideo);
            mRecylerView.setAdapter(mAdatper);
-           mRecylerView.setLayoutManager(new LinearLayoutManager(getContext()));
+           mRecylerView.setLayoutManager(new LinearLayoutManager(mContext));
+           mAdatper.setOnItemClickListenner(new HomeAdatper.OnItemClickListenner() {
+               @Override
+               public void OnClick(View view, int position, String videopath,int id) {
+                  // Toast.makeText(getContext(),"view:"+view+"position:"+position+"city:"+city,Toast.LENGTH_LONG).show();
+                   Intent palyIntent = new Intent(mContext, PalyActivity.class);
+
+                   //用Bundle携带数据
+                   Bundle bundle=new Bundle();
+                   //传递name参数为tinyphp
+                   bundle.putString("_ID", videopath);
+                   palyIntent.putExtras(bundle);
+                   startActivity(palyIntent);
+               }
+           });
+
         }
     };
     @Nullable
@@ -62,7 +79,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_fragment, null);
        mRecylerView = view.findViewById(R.id.recycler_view);
-       this.mContext=getContext();
+       mContext = view.getContext();
        requestVideo();
        initSwipe(view);
         return view;
@@ -100,7 +117,7 @@ public class HomeFragment extends Fragment {
                      Message message = new Message();
                      message.obj = json;
                      mHandler.sendMessage(message);
-                    // Toast.makeText(mContext,"加载成功",Toast.LENGTH_LONG).show();
+                     //Toast.makeText(mContext,"加载成功",Toast.LENGTH_LONG).show();
                      mSwipe.setRefreshing(false);
                  }else{
                      //Toast.makeText(mContext,"加载失败",Toast.LENGTH_LONG).show();
