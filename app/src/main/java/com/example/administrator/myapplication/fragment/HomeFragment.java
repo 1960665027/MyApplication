@@ -105,8 +105,13 @@ public class HomeFragment extends Fragment {
         mClient.newCall(mRequest).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-               // Toast.makeText(mContext,"加载失败",Toast.LENGTH_LONG).show();
-                mSwipe.setRefreshing(false);
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mSwipe.setRefreshing(false);
+                        Toast.makeText(mContext,"加载失败",Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
@@ -117,11 +122,22 @@ public class HomeFragment extends Fragment {
                      Message message = new Message();
                      message.obj = json;
                      mHandler.sendMessage(message);
-                     //Toast.makeText(mContext,"加载成功",Toast.LENGTH_LONG).show();
-                     mSwipe.setRefreshing(false);
+
+                     mHandler.post(new Runnable() {
+                         @Override
+                         public void run() {
+                             mSwipe.setRefreshing(false);
+                             Toast.makeText(mContext,"加载成功",Toast.LENGTH_SHORT).show();
+                         }
+                     });
                  }else{
-                     //Toast.makeText(mContext,"加载失败",Toast.LENGTH_LONG).show();
-                     mSwipe.setRefreshing(false);
+                     mHandler.post(new Runnable() {
+                         @Override
+                         public void run() {
+                             mSwipe.setRefreshing(false);
+                             Toast.makeText(mContext,"加载失败",Toast.LENGTH_SHORT).show();
+                         }
+                     });
                  }
             }
         });

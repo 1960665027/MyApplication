@@ -1,8 +1,15 @@
 package com.example.administrator.myapplication;
 
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,27 +20,44 @@ import android.widget.Toast;
 
 
 import com.example.administrator.myapplication.bean.Tab;
+import com.example.administrator.myapplication.db.MyDbHelper;
 import com.example.administrator.myapplication.fragment.FollowFragment;
 import com.example.administrator.myapplication.fragment.HomeFragment;
 import com.example.administrator.myapplication.fragment.HotFragment;
 import com.example.administrator.myapplication.fragment.MyFragment;
+import com.example.administrator.myapplication.model.Constant;
+import com.example.administrator.myapplication.presenter.DbManger;
+import com.example.administrator.myapplication.view.SplashActivity;
 import com.example.administrator.myapplication.widget.FragmentTabHost;
+import com.mob.MobSDK;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
+import cn.smssdk.gui.RegisterPage;
+
+public class MainActivity extends AppCompatActivity{
 
     private List<Tab> listTab = new ArrayList<>(4);
     private LayoutInflater mInflater;
     private FragmentTabHost mTabHost;
     private Toolbar mToolbar;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
         initTab();
         initToolbar();
+
+
+
+
     }
     private void initTab()
     {

@@ -1,10 +1,11 @@
 apply plugin: 'com.android.application'
-
+// 添加插件
+apply plugin: "com.mob.sdk"
 android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.administrator.myapplication"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -31,4 +32,13 @@ dependencies {
     implementation 'com.android.support:cardview-v7:26.1.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:design:26.1.0'
+}
+
+
+// 在MobSDK的扩展中注册SMSSDK的相关信息
+MobSDK {
+    appKey "moba6b6c6d6"
+    appSecret "b89d2427a3bc7ad1aea1e1e8c1d36bf3"
+
+    SMSSDK {}
 }
